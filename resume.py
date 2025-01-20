@@ -307,3 +307,4 @@ if __name__ == "__main__":
     output_path = target_path.parent / f'./cv_{target_path.stem}_{resume_key}.html'
     generate_html(resume, template_path, output_path)
     generate_pdf(output_path, target_path.parent / f'./cv_{target_path.stem}_{resume_key}.pdf')
+    print(f'Generated resume for {resume_key} in {target_path.parent / f"cv_{target_path.stem}_{resume_key}.pdf"}')
