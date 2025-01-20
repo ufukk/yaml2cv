@@ -9,5 +9,5 @@ Generate tailored resumes from yaml files
 
 ## Usage
 
-python resume.py yaml_path resume_key
+`python resume.py yaml_path resume_key`
 
