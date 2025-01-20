@@ -296,7 +296,6 @@ def generate_pdf(html_path, pdf_path):
     HTML(html_path).write_pdf(pdf_path)
 
 if __name__ == "__main__":
-    print(sys.argv)
     if len(sys.argv) < 3:
         print('Please provide a yaml path and a key')
         exit(1)
