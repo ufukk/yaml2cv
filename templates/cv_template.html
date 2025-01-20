@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ resume.personal_information.name }} {{ resume.personal_information.surname }} - {{ resume.personal_information.job_title }}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .header {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .header-left {
+            text-align: left;
+        }
+
+        .header-right {
+            text-align: right;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #0066cc;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            color: #0066cc;  /* Changed to blue */
+            margin-bottom: 10px;
+        }
+
+        .job-title {
+            font-size: 20px;
+            color: #444;
+            margin-bottom: 10px;
+        }
+
+        .contact-info {
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .contact-info p {
+            margin-bottom: 3px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .experience {
+            margin-bottom: 15px;
+        }
+
+        .project {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <h1>{{ resume.personal_information.name }} {{ resume.personal_information.surname }}</h1>
+            <div class="job-title">{{ resume.personal_information.job_title }}</div>
+        </div>
+        <div class="header-right">
+            <div class="contact-info">
+                 {% if (resume.personal_information.email) %} <p>Email: {{ resume.personal_information.email }}</p> {% endif %}
+                 {% if (resume.personal_information.phone) %} <p>Phone: {{ resume.personal_information.phone_prefix }} {{ resume.personal_information.phone }}</p> {% endif %}
+                 {% if (resume.personal_information.github) %} <p>GitHub: {{ resume.personal_information.github }}</p> {% endif %}
+                 {% if (resume.personal_information.linkedin) %} <p>LinkedIn: {{ resume.personal_information.linkedin }}</p> {% endif %}
+                 {% if (resume.personal_information.code_samples) %} <p><a href="{{ resume.personal_information.code_samples }}">Code Samples</a></p> {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+    <div class="section">
+        <h2>Professional Summary</h2>
+        {{ resume.personal_information.professional_summary }}
+    </div>
+
+    <div class="section">
+        <h2>Education</h2>
+        {% for edu in resume.education_details %}
+            <div>
+                <h3>{{ edu.education_level }} in {{ edu.field_of_study }}</h3>
+                {% if(edu.start_date) %} <p>{{ edu.institution }} - {{ edu.start_date }} to {{ edu.year_of_completion }}</p> {% endif %}
+                {% if(edu.final_evaluation_grade) %} <p>Grade: {{ edu.final_evaluation_grade }}</p> {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="section">
+        <h2>Experience</h2>
+        {% for exp in resume.experience_details %}
+            <div class="experience">
+                <h3>- <em>{{ exp.position }}</em> at {{ exp.company }}</h3>
+                {% if exp.employment_period %}<p>{{ exp.employment_period }} - {{ exp.location }}</p>{% endif %}
+                <p>Industry: {{ exp.industry }}</p>
+                <ul>
+                    {% for responsibility in exp.key_responsibilities %}
+                        <li>{{ responsibility }}</li>
+                    {% endfor %}
+                </ul>
+                <p>Skills: {{ exp.skills_acquired | join(', ') }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="section">
+        <h2>Projects</h2>
+        {% for proj in resume.projects %}
+            <div class="project">
+                <h3>{{ proj.name }}</h3>
+                <p>{{ proj.description }}</p>
+                <p><strong>Skills:</strong> {{ proj.skills }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="section">
+        <h2>Legal Authorization</h2>
+        <p>EU Work Authorization: {{ resume.legal_authorization.eu_work_authorization }}</p>
+    </div>
+
+</body>
+</html>

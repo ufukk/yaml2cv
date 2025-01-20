@@ -1,0 +1,50 @@
+base_resume: &base_resume
+  personal_information:
+  name: ""
+  surname: ""
+  date_of_birth: ""
+  phone_prefix: ""
+  phone: ""
+  email: ""
+  github: ""
+  country: ""
+  city: ""
+  address: ""
+  zip_code: ""
+  linkedin: ""
+  job_title: ""
+  professional_summary: ""
+  code_samples: ""
+
+education_details:
+  - education_level: ""
+    institution: ""
+    field_of_study: ""
+    final_evaluation_grade: 
+    start_date: 
+    year_of_completion: 
+
+projects:
+  - name: ""
+    description: ""
+    skills: ""
+
+
+legal_authorization:
+  eu_work_authorization: ""
+  us_work_authorization: ""
+  uk_work_authorization: ""
+  requires_us_visa: ""
+  requires_us_sponsorship: ""
+  requires_eu_visa: ""
+    
+tailored_resume: &tailored_resume
+  <<: *base_resume
+  personal_information:
+    <<: *base_resume.personal_information
+    name: ""
+    surname: ""
+    date_of_birth: ""
+    phone_prefix: ""
+    phone: ""
+    email: "
